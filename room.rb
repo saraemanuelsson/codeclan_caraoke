@@ -11,4 +11,10 @@ class Room
         @bar_tab = 0
     end
 
+    def check_in_guest(guest)
+        @guests.push(guest)
+    end
+
+
+
 end
