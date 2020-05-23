@@ -44,7 +44,15 @@ class Bar
         return amount / room.number_of_guests_in_room()
     end
 
-    # def c
-
+    def charge_customer_split_bill(room, guest)
+        amount = split_bill(room)
+        
+        if guest.money_in_wallet > amount
+            guest.pay_bill(amount)
+            add_money_to_till(amount)
+        else
+            return "Call the police!"
+        end
+    end
 
 end
