@@ -27,4 +27,9 @@ class TestBar < MiniTest::Test
         assert_equal(0, @bar.total_money_in_till())
     end
 
+    def test_add_money_to_till()
+        @bar.add_money_to_till(10)
+        assert_equal(10, @bar.total_money_in_till())
+    end
+
 end

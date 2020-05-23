@@ -13,5 +13,9 @@ class Bar
         return @till
     end
 
+    def add_money_to_till(amount)
+        @till += amount
+    end
+
 
 end
