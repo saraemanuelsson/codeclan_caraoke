@@ -3,6 +3,7 @@ require('minitest/reporters')
 require_relative('../room')
 require_relative('../song')
 require_relative('../guest')
+require_relative('../bar')
 
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
@@ -21,7 +22,7 @@ class TestRoom < MiniTest::Test
 
         @songs = [@song1, @song2, @song3]
 
-        @room = Room.new("The Disco Room", 10, @songs)
+        @room = Room.new("The Disco Room", 5, @songs)
 
     end
 
@@ -30,7 +31,7 @@ class TestRoom < MiniTest::Test
     end
 
     def test_capacity()
-        assert_equal(10, @room.capacity)
+        assert_equal(5, @room.capacity)
     end
 
     def test_check_in_guest()
@@ -38,6 +39,16 @@ class TestRoom < MiniTest::Test
         @room.check_in_guest(@guest2)
         @room.check_in_guest(@guest3)
         assert_equal(3, @room.number_of_guests_in_room())
+    end
+
+    def test_check_in_guest__full_room()
+        @room.check_in_guest(@guest1)
+        @room.check_in_guest(@guest2)
+        @room.check_in_guest(@guest3)
+        @room.check_in_guest(@guest1)
+        @room.check_in_guest(@guest2)
+        @room.check_in_guest(@guest3)
+        assert_equal(5, @room.number_of_guests_in_room())
     end
 
     def test_check_out_guest()
@@ -98,9 +109,6 @@ class TestRoom < MiniTest::Test
     # end
 
     # def test_find_songs_by_artist__not_found()
-    # end
-    
-    # def test_empty_queue_when_guests_leave()
     # end
 
     # def test_sell_drink()

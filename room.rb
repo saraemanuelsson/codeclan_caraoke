@@ -16,7 +16,7 @@ class Room
     end
 
     def check_in_guest(guest)
-        @guests.push(guest)
+        @guests.push(guest) if @guests.size < @capacity
     end
 
     def check_out_guest(guest)
@@ -40,13 +40,9 @@ class Room
         return @song_queue.shift()
     end
 
-    
-
     # def find_song_name(song)
     #     found_song = @songs.find { |song| song.name == song }
     #     return song
     # end
-
-
 
 end
