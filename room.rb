@@ -2,12 +2,12 @@ class Room
 
     attr_reader :name, :capacity, :songs, :guests, :song_queue, :bar_tab
 
-    def initialize(name, capacity, guests = [], songs)
+    def initialize(name, capacity, guests = [], songs, song_queue = [])
         @name = name
         @capacity = capacity
-        @songs = songs
         @guests = guests
-        @song_queue = []
+        @songs = songs
+        @song_queue = song_queue
         @bar_tab = 0
     end
 
@@ -26,6 +26,17 @@ class Room
     def clear_room()
         @guests.clear()
     end
+
+    def add_song_to_queue(song)
+        @song_queue.push(song)
+    end
+
+    def 
+
+    # def find_song_name(song)
+    #     found_song = @songs.find { |song| song.name == song }
+    #     return song
+    # end
 
 
 

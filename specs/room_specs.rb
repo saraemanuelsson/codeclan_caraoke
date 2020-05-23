@@ -20,17 +20,17 @@ class TestRoom < MiniTest::Test
         @guests = [@guest1, @guest2, @guest3]
         
         @song1 = Song.new("Don't stop believin'", "Journey")
-        @song2 = Song.new("Livin' on a prayer", "Bon Jovi")
+        @song2 = Song.new("What does the fox say", "Ylvis")
         @song3 = Song.new("Thrift shop", "Macklemore")
 
         @songs = [@song1, @song2, @song3]
 
-        @room = Room.new("Burn Baby Burn", 10, @guests, @songs)
+        @room = Room.new("The Disco Room", 10, @guests, @songs)
 
     end
 
     def test_name()
-        assert_equal("Burn Baby Burn", @room.name)
+        assert_equal("The Disco Room", @room.name)
     end
 
     def test_capacity()
@@ -53,15 +53,46 @@ class TestRoom < MiniTest::Test
         @room.clear_room()
         assert_equal(0, @room.number_of_guests_in_room())
     end
+
+    def test_add_song_to_queue()
+        @room.add_song_to_queue(@song2)
+        assert_equal(1, @room.song_queue.size)
+    end
+
+    def test_remove_song_from_queue()
+        room_with_songs_added = Room.new("The Hip Hop Room", 15, @songs, @songs)
+        room_with_songs_added.remove_song_from_queue(@song1)
+        assert_equal(2, room_with_songs_added.song_queue.size)
+    end
+
+    # def test_play_song()
+    # end
+
+    # def test_song_is_removed_once_played()
+    # end
+
+    # def test_find_song_name__song_found()
+    #     result = @room.find_song_name(@song1.name)
+    #     assert_equal("Don't stop believin'", result)
+    # end
+
+    # def test_find_song_name__not_found()
+    # end
+
+    # def test_find_songs_by_artist__found()
+    # end
+
+    # def test_find_songs_by_artist__not_found()
+    # end
     
     # def test_add_songs_to_queue()
+    #     assert_equal()
     # end
 
     # def test_empty_queue_when_guests_leave()
     # end
     
-    # def test_play_song()
-    # end
+
 
     # def test_sell_drink()
     # end
