@@ -64,8 +64,12 @@ class TestRoom < MiniTest::Test
         assert_equal(1, @room.song_queue.size())
     end
 
-    # def test_play_song()
-    # end
+    def test_play_song()
+        @room.add_song_to_queue(@song1)
+        @room.add_song_to_queue(@song2)
+        assert_equal(@song1, @room.play_song())
+        assert_equal(1, @room.song_queue.size())
+    end
 
     # def test_song_is_removed_once_played()
     # end

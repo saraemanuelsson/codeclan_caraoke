@@ -35,6 +35,10 @@ class Room
         @song_queue.delete(song)
     end
 
+    def play_song()
+        return @song_queue.shift()
+    end
+
     # def find_song_name(song)
     #     found_song = @songs.find { |song| song.name == song }
     #     return song
