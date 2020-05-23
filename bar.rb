@@ -17,6 +17,11 @@ class Bar
         @till += amount
     end
 
+    def add_guest_to_line(guest)
+        @line.push(guest)
+    end
+
+
     # def find_empty_room()
 
     #     found_rooms = @rooms.find_all { |room| room.number_of_guests_in_room() == 0 }

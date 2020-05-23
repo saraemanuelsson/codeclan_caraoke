@@ -36,6 +36,23 @@ class TestBar < MiniTest::Test
         assert_equal(10, @bar.total_money_in_till())
     end
 
+    def test_add_guest_to_line()
+        @bar.add_guest_to_line(@guest1)
+        @bar.add_guest_to_line(@guest2)
+        assert_equal(2, @bar.line.size())
+    end
+
+    # def test_guest_added_to_front_of_line_if_no_space_in_room()
+    #     @room1.check_in_guest(@guest1)
+    #     @room1.check_in_guest(@guest2)
+    #     @room1.check_in_guest(@guest3)
+    #     @room1.check_in_guest(@guest1)
+    #     @room1.check_in_guest(@guest2)
+    #     @room1.check_in_guest(@guest3)
+    #     first_person_in_line = @bar.line[0]
+    #     assert_equal(@guest3, first_person_in_line)
+    # end
+
     # def test_find_empty_room()
     #     @room2.check_in_guest(@guest1)
     #     assert_equal([@room1], @bar.find_empty_room())
