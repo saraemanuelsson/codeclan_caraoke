@@ -30,7 +30,7 @@ class Room
         @song_queue.clear()
     end
 
-    def add_song_to_queue(song)
+    def increase_songs_in_queue(song)
         @song_queue.push(song)
     end
 
@@ -55,9 +55,10 @@ class Room
         return used_hours.ceil * price_per_hour
     end
 
-    # def find_song_name(song)
-    #     found_song = @songs.find { |song| song.name == song }
-    #     return song
+    # def find_song_by_name(song_name)
+    #     for song in @songs
+    #         return song if song.include?(song_name)
+    #     end
     # end
 
 end

@@ -68,34 +68,34 @@ class TestRoom < MiniTest::Test
         assert_equal(0, @room.number_of_guests_in_room())
     end
 
-    def test_add_song_to_queue()
-        @room.add_song_to_queue(@song2)
+    def test_increase_songs_in_queue()
+        @room.increase_songs_in_queue(@song2)
         assert_equal(1, @room.song_queue.size())
     end
 
     def test_remove_song_from_queue()
-        @room.add_song_to_queue(@song1)
-        @room.add_song_to_queue(@song2)
+        @room.increase_songs_in_queue(@song1)
+        @room.increase_songs_in_queue(@song2)
         @room.remove_song_from_queue(@song1)
         assert_equal(1, @room.song_queue.size())
     end
 
     def test_play_song()
-        @room.add_song_to_queue(@song1)
-        @room.add_song_to_queue(@song2)
+        @room.increase_songs_in_queue(@song1)
+        @room.increase_songs_in_queue(@song2)
         assert_equal(@song1, @room.play_song())
     end
 
     def test_song_is_removed_once_played()
-        @room.add_song_to_queue(@song1)
-        @room.add_song_to_queue(@song2)
+        @room.increase_songs_in_queue(@song1)
+        @room.increase_songs_in_queue(@song2)
         @room.play_song()
         assert_equal(1, @room.song_queue.size())
     end
 
     def test_all_songs_removed_when_guests_leave()
-        @room.add_song_to_queue(@song1)
-        @room.add_song_to_queue(@song2)
+        @room.increase_songs_in_queue(@song1)
+        @room.increase_songs_in_queue(@song2)
         @room.clear_room()
         assert_equal(0, @room.song_queue.size())
     end
@@ -114,6 +114,14 @@ class TestRoom < MiniTest::Test
         @room.increase_timer(123)
         assert_equal(90, @room.charge_per_booking())
     end
+
+    # def test_find_song_by_name()
+    #     result = @room.find_song_by_name("Thrift shop")
+    #     assert_equal(@song3, result)
+    # end
+
+    # def test_find_songs_by_artist()
+    # end
 
     # def test_find_song_name__song_found()
     #     result = @room.find_song_name(@song1.name)

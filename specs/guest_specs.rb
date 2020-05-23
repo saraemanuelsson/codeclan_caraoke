@@ -10,15 +10,21 @@ class TestGuest < MiniTest::Test
 
     def setup()
 
-        @guest = Guest.new("Sara", 140, "ABC")
-        
-        @song1 = Song.new("Don't stop believin'", "Journey", 472)
+        @song1 = Song.new("Waterloo", "ABBA", 1)
         @song2 = Song.new("What does the fox say", "Ylvis", 28)
         @song3 = Song.new("ABC", "Jackson 5", 91)
 
-        @songs = [@song1, @song2, @song3]
+        @wants_to_sing = [@song1, @song2, @song3]
 
-        @room = Room.new("The Disco Room", 5, @songs, 30)
+        @guest = Guest.new("Sara", 140, "ABC", @wants_to_sing)
+        
+        @song4 = Song.new("Don't stop believin'", "Journey", 472)
+        @song5 = Song.new("What does the fox say", "Ylvis", 28)
+        @song6 = Song.new("ABC", "Jackson 5", 91)
+
+        @song_book = [@song4, @song5, @song6]
+
+        @room = Room.new("The Disco Room", 5, @song_book, 30)
     end
 
     def test_name()
@@ -42,5 +48,16 @@ class TestGuest < MiniTest::Test
         result = @guest.find_favourite_song("ABC", @room.songs)
         assert_equal("Whoo", result)
     end
+
+    # def test_add_songs_to_queue()
+    #     @guest.add_songs_to_queue(@songs)
+    #     assert_equal(2, @room.song_queue.size)
+    # end
+
+    # def test_pay_money()
+    #     assert_equal()
+    # end
+
+
 
 end

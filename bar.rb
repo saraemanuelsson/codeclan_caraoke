@@ -1,6 +1,6 @@
 class Bar
 
-    attr_reader :name, :rooms, :till, :line
+    attr_reader :name, :rooms, :line
 
     def initialize(name, rooms)
         @name = name
@@ -9,6 +9,9 @@ class Bar
         @line = []
     end
 
-    
+    def total_money_in_till()
+        return @till
+    end
+
 
 end
