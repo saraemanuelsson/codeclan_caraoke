@@ -34,6 +34,10 @@ class TestRoom < MiniTest::Test
         assert_equal(5, @room.capacity)
     end
 
+    def test_price()
+        assert_equal(30, @room.price_per_hour())
+    end
+
     def test_check_in_guest()
         @room.check_in_guest(@guest1)
         @room.check_in_guest(@guest2)
@@ -93,7 +97,7 @@ class TestRoom < MiniTest::Test
         @room.add_song_to_queue(@song1)
         @room.add_song_to_queue(@song2)
         @room.clear_room()
-        assert_equal(0, @room.song_queue.size)
+        assert_equal(0, @room.song_queue.size())
     end
 
     def test_increases_timer()
@@ -101,6 +105,14 @@ class TestRoom < MiniTest::Test
         assert_equal(35, @room.timer())
     end
 
+    def test_increase_bar_tab()
+        @room.increase_bar_tab(50)
+        assert_equal(50, @room.bar_tab())
+    end
+
+    def test_charge_per_booking()
+        assert_equal(90, @room.charge_per_booking(123))
+    end
 
     # def test_find_song_name__song_found()
     #     result = @room.find_song_name(@song1.name)

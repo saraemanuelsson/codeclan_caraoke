@@ -1,6 +1,6 @@
 class Room
 
-    attr_reader :name, :capacity, :songs, :timer, :guests, :song_queue, :bar_tab
+    attr_reader :name, :capacity, :songs, :price_per_hour, :timer, :guests, :song_queue, :bar_tab
 
     def initialize(name, capacity, songs, price_per_hour)
         @name = name
@@ -44,6 +44,15 @@ class Room
 
     def increase_timer(minutes)
         @timer += minutes
+    end
+
+    def increase_bar_tab(price)
+        @bar_tab += price
+    end
+
+    def charge_per_booking(minutes)
+        used_hours = minutes / 60.0
+        return used_hours.ceil * price_per_hour
     end
 
     # def find_song_name(song)
