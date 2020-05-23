@@ -44,5 +44,7 @@ class Bar
         return amount / room.number_of_guests_in_room()
     end
 
+    # def c
+
 
 end

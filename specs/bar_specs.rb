@@ -48,18 +48,14 @@ class TestBar < MiniTest::Test
     # end
 
     def test_charge_one_customer__enough_money()
-        @room2.increase_timer(110)
-        amount = @room2.charge_per_booking()
-        @room2.increase_bar_tab(amount)
+        @room2.increase_bar_tab(140)
         @bar.charge_one_customer(@room2, @guest2)
         assert_equal(433, @guest2.money_in_wallet())
         assert_equal(140, @bar.total_money_in_till())
     end
 
     def test_charge_one_customer__not_enough_money()
-        @room2.increase_timer(110)
-        amount = @room2.charge_per_booking()
-        @room2.increase_bar_tab(amount)
+        @room2.increase_bar_tab(362)
         result = @bar.charge_one_customer(@room2, @guest1)
         assert_equal("Call the police!", result)
         assert_equal(47, @guest3.money_in_wallet())
@@ -69,10 +65,26 @@ class TestBar < MiniTest::Test
     def test_split_bill()
         @room2.check_in_guest(@guest1)
         @room2.check_in_guest(@guest2)
-        @room2.increase_timer(110)
-        amount = @room2.charge_per_booking()
-        @room2.increase_bar_tab(amount)
+        @room2.increase_bar_tab(140)
         assert_equal(70, @bar.split_bill(@room2))
     end
+
+    # def test_charge_customer_split_bill__enough_money()
+    #     @room2.check_in_guest(@guest1)
+    #     @room2.check_in_guest(@guest2)
+    #     @room2.increase_timer(110)
+    #     amount = @room2.charge_per_booking()
+    #     @room2.increase_bar_tab(amount)
+    #     assert_equal(70, @bar.split_bill(@room2))
+    # end
+
+    # def test_charge_customer_split_bill__not_enough_money()
+    #     @room2.check_in_guest(@guest1)
+    #     @room2.check_in_guest(@guest2)
+    #     @room2.increase_timer(110)
+    #     amount = @room2.charge_per_booking()
+    #     @room2.increase_bar_tab(amount)
+    #     assert_equal(70, @bar.split_bill(@room2))
+    # end
 
 end
