@@ -22,7 +22,7 @@ class TestRoom < MiniTest::Test
 
         @songs = [@song1, @song2, @song3]
 
-        @room = Room.new("The Disco Room", 5, @songs)
+        @room = Room.new("The Disco Room", 5, @songs, 30)
 
     end
 
@@ -94,6 +94,11 @@ class TestRoom < MiniTest::Test
         @room.add_song_to_queue(@song2)
         @room.clear_room()
         assert_equal(0, @room.song_queue.size)
+    end
+
+    def test_increases_timer()
+        @room.increase_timer(35)
+        assert_equal(35, @room.timer())
     end
 
 

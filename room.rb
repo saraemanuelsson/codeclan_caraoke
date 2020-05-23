@@ -1,12 +1,14 @@
 class Room
 
-    attr_reader :name, :capacity, :songs, :guests, :song_queue, :bar_tab
+    attr_reader :name, :capacity, :songs, :timer, :guests, :song_queue, :bar_tab
 
-    def initialize(name, capacity, songs)
+    def initialize(name, capacity, songs, price_per_hour)
         @name = name
         @capacity = capacity
-        @guests = []
         @songs = songs
+        @price_per_hour = price_per_hour
+        @timer = 0
+        @guests = []
         @song_queue = []
         @bar_tab = 0
     end
@@ -38,6 +40,10 @@ class Room
 
     def play_song()
         return @song_queue.shift()
+    end
+
+    def increase_timer(minutes)
+        @timer += minutes
     end
 
     # def find_song_name(song)
