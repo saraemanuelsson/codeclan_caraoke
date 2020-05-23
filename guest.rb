@@ -17,4 +17,8 @@ class Guest
         return @wallet -= amount
     end
 
+    def find_favourite_song(song, songs)
+        return "Whoo" if songs.find { |song| song == song }
+    end
+
 end
