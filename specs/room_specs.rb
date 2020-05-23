@@ -11,17 +11,15 @@ class TestRoom < MiniTest::Test
 
     def setup
 
-
-
         @guest1 = Guest.new("Bill", 3, "What does the fox say")
         @guest2 = Guest.new("Anna", 573, "I wanna dance with somebody")
         @guest3 = Guest.new("Linda", 47, "Whistle")
 
         @guests = [@guest1, @guest2, @guest3]
         
-        @song1 = Song.new("Don't stop believin'", "Journey")
-        @song2 = Song.new("What does the fox say", "Ylvis")
-        @song3 = Song.new("Thrift shop", "Macklemore")
+        @song1 = Song.new("Don't stop believin'", "Journey", 472)
+        @song2 = Song.new("What does the fox say", "Ylvis", 28)
+        @song3 = Song.new("Thrift shop", "Macklemore", 91)
 
         @songs = [@song1, @song2, @song3]
 
@@ -56,13 +54,14 @@ class TestRoom < MiniTest::Test
 
     def test_add_song_to_queue()
         @room.add_song_to_queue(@song2)
-        assert_equal(1, @room.song_queue.size)
+        assert_equal(1, @room.song_queue.size())
     end
 
     def test_remove_song_from_queue()
-        room_with_songs_added = Room.new("The Hip Hop Room", 15, @songs, @songs)
-        room_with_songs_added.remove_song_from_queue(@song1)
-        assert_equal(2, room_with_songs_added.song_queue.size)
+        @room.add_song_to_queue(@song1)
+        @room.add_song_to_queue(@song2)
+        @room.remove_song_from_queue(@song1)
+        assert_equal(1, @room.song_queue.size())
     end
 
     # def test_play_song()
