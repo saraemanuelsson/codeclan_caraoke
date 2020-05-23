@@ -111,7 +111,8 @@ class TestRoom < MiniTest::Test
     end
 
     def test_charge_per_booking()
-        assert_equal(90, @room.charge_per_booking(123))
+        @room.increase_timer(123)
+        assert_equal(90, @room.charge_per_booking())
     end
 
     # def test_find_song_name__song_found()

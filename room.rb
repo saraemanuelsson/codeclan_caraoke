@@ -50,8 +50,8 @@ class Room
         @bar_tab += price
     end
 
-    def charge_per_booking(minutes)
-        used_hours = minutes / 60.0
+    def charge_per_booking()
+        used_hours = @timer / 60.0
         return used_hours.ceil * price_per_hour
     end
 
