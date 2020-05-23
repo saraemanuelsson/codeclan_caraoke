@@ -66,8 +66,13 @@ class TestBar < MiniTest::Test
         assert_equal(0, @bar.total_money_in_till())
     end
 
-    # def test_split_bill()
-    #     assert_equal()
-    # end
+    def test_split_bill()
+        @room2.check_in_guest(@guest1)
+        @room2.check_in_guest(@guest2)
+        @room2.increase_timer(110)
+        amount = @room2.charge_per_booking()
+        @room2.increase_bar_tab(amount)
+        assert_equal(70, @bar.split_bill(@room2))
+    end
 
 end

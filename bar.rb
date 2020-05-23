@@ -39,9 +39,10 @@ class Bar
         end
     end
     
-    # def split_bill(room)
-
-    # end
+    def split_bill(room)
+        amount = room.bar_tab()
+        return amount / room.number_of_guests_in_room()
+    end
 
 
 end
