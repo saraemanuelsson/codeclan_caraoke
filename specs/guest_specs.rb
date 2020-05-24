@@ -44,8 +44,8 @@ class TestGuest < MiniTest::Test
         assert_equal(115, @guest.pay_bill(25))
     end
 
-    def test_find_favourite_song()
-        result = @guest.find_favourite_song("ABC", @room.songs)
+    def test_cheer_if_favourite_song_found()
+        result = @guest.cheer_if_room_has_favourite_song(@room)
         assert_equal("Whoo", result)
     end
 

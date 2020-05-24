@@ -17,8 +17,8 @@ class Guest
         return @wallet -= amount
     end
 
-    def find_favourite_song(song, songs)
-        return "Whoo" if songs.find { |song| song == song }
+    def cheer_if_room_has_favourite_song(room)
+        return "Whoo" if room.find_song_by_name(@favourite_song) != nil
     end
 
     def find_and_add_known_songs_to_queue(songs, queue)

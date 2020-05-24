@@ -56,11 +56,11 @@ class Room
     end
 
     def find_song_by_name(song_name)
-        songs.find { |song| song.name == song_name }
+        @songs.find { |song| song.name == song_name }
     end
 
     def find_songs_by_artist(artist)
-        found_songs = songs.find_all { |song| song.artist == artist }
+        found_songs = @songs.find_all { |song| song.artist == artist }
         return found_songs
     end
 
