@@ -16,9 +16,9 @@ class TestRoom < MiniTest::Test
         @guest2 = Guest.new("Anna", 573, "I wanna dance with somebody")
         @guest3 = Guest.new("Linda", 47, "Whistle")
         
-        @song1 = Song.new("Don't stop believin'", "Journey", 472)
-        @song2 = Song.new("What does the fox say", "Ylvis", 28)
-        @song3 = Song.new("Thrift shop", "Macklemore", 91)
+        @song1 = Song.new("Don't stop believin'", "Journey")
+        @song2 = Song.new("What does the fox say", "Ylvis")
+        @song3 = Song.new("Thrift shop", "Macklemore")
 
         @songs = [@song1, @song2, @song3]
 

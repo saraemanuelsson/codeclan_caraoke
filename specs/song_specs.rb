@@ -7,7 +7,7 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 class TestSong < MiniTest::Test 
 
     def setup()
-        @song = Song.new("Waterloo", "ABBA", 1)
+        @song = Song.new("Waterloo", "ABBA")
     end
 
     def test_name()
@@ -16,10 +16,6 @@ class TestSong < MiniTest::Test
 
     def test_artist()
         assert_equal("ABBA", @song.artist())
-    end
-
-    def test_number()
-        assert_equal(1, @song.number())
     end
 
 end

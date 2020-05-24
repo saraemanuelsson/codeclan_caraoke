@@ -10,17 +10,17 @@ class TestGuest < MiniTest::Test
 
     def setup()
 
-        @song1 = Song.new("Waterloo", "ABBA", 1)
-        @song2 = Song.new("What does the fox say", "Ylvis", 28)
-        @song3 = Song.new("ABC", "Jackson 5", 91)
+        @song1 = Song.new("Waterloo", "ABBA")
+        @song2 = Song.new("What does the fox say", "Ylvis")
+        @song3 = Song.new("ABC", "Jackson 5")
 
-        @wants_to_sing = [@song1, @song2, @song3]
+        @known_songs = [@song1, @song2, @song3]
 
-        @guest = Guest.new("Sara", 140, "ABC", @wants_to_sing)
+        @guest = Guest.new("Sara", 140, "ABC", @known_songs)
         
-        @song4 = Song.new("Don't stop believin'", "Journey", 472)
-        @song5 = Song.new("What does the fox say", "Ylvis", 28)
-        @song6 = Song.new("ABC", "Jackson 5", 91)
+        @song4 = Song.new("Don't stop believin'", "Journey")
+        @song5 = Song.new("What does the fox say", "Ylvis")
+        @song6 = Song.new("ABC", "Jackson 5")
 
         @song_book = [@song4, @song5, @song6]
 
@@ -49,15 +49,9 @@ class TestGuest < MiniTest::Test
         assert_equal("Whoo", result)
     end
 
-    # def test_add_songs_to_queue()
-    #     @guest.add_songs_to_queue(@songs)
-    #     assert_equal(2, @room.song_queue.size)
-    # end
-
-    # def test_pay_money()
-    #     assert_equal()
-    # end
-
-
+    def test_find_and_add_known_songs_to_queue()
+        @guest.find_and_add_known_songs_to_queue(@song_book, @room.song_queue())
+        assert_equal(2, @room.song_queue.size)
+    end
 
 end
