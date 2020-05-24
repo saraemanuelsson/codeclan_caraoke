@@ -1,6 +1,6 @@
 class Guest
 
-    attr_reader :name, :favourite_song, :songs
+    attr_reader :name, :favourite_song, :known_songs
 
     def initialize(name, wallet, favourite_song, known_songs = [])
         @name = name
@@ -19,19 +19,14 @@ class Guest
 
     def cheer_if_room_has_favourite_song(room)
         return "Whoo" if room.find_song_by_name(@favourite_song) != nil
+        return "Booo"
     end
 
-    def find_and_add_known_songs_to_queue(songs, queue)
+    def find_and_add_known_songs_to_queue(room)
 
-        available_song_titles = []
-        songs.each { |song| available_song_titles.push(song.name) }
+        matching_songs = room.songs & @known_songs
 
-        known_song_titles = []
-        @known_songs.each { |song| known_song_titles.push(song.name) }
-
-        matching_songs = available_song_titles & known_song_titles
-
-        matching_songs.each { |song| queue.push(song) }
+        matching_songs.each { |song| room.song_queue.push(song) }
 
     end
     

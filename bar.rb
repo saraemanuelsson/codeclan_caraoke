@@ -27,7 +27,7 @@ class Bar
         suitable_rooms_for_group = available_rooms.find_all { |room| room.capacity() > group_size }
 
         if suitable_rooms_for_group.size != 0
-            return suitable_rooms_for_group
+            suitable_rooms_for_group[0].check_in_guest(guest)
         else
             add_guest_to_line(guest)
         end
