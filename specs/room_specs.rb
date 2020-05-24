@@ -115,6 +115,11 @@ class TestRoom < MiniTest::Test
         assert_equal(90, @room.charge_per_booking())
     end
 
+    def test_find_song_by_name()
+        result = @room.find_song_by_name("Thrift shop")
+        assert_equal(@song3, result)
+    end
+
     def test_find_songs_by_artist()
         new_song = Song.new("Stonehenge", "Ylvis")
         @songs.push(new_song)
