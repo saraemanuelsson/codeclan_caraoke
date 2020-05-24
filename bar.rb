@@ -21,17 +21,17 @@ class Bar
         @line.push(guest)
     end
 
+    def find_room_for_guest(guest, group_size)
+        available_rooms = @rooms.find_all { |room| room.number_of_guests_in_room() == 0 }
 
-    # def find_empty_room()
+        suitable_rooms_for_group = available_rooms.find_all { |room| room.capacity() > group_size }
 
-    #     found_rooms = @rooms.find_all { |room| room.number_of_guests_in_room() == 0 }
-    #     # found_rooms = []
-
-    #     # for room in @rooms
-    #     #     found_rooms.push(room) if room.number_of_guests_in_room() == 0
-    #     # end
-
-    # end
+        if suitable_rooms_for_group.size != 0
+            return suitable_rooms_for_group
+        else
+            add_guest_to_line(guest)
+        end
+    end
 
     def charge_one_customer(room, guest)
         amount = room.bar_tab()

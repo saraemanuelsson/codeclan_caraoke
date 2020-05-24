@@ -15,6 +15,8 @@ class TestBar < MiniTest::Test
         @room1 = Room.new("The Disco Room", 5, @songs, 30)
         @room2 = Room.new("The Jazz Room", 15, @songs, 70)
 
+        @rooms = [@room1, @room2]
+
         @bar = Bar.new("CodeClan Caraoke", @rooms)
 
         @guest1 = Guest.new("Bill", 3, "What does the fox say")
@@ -42,27 +44,14 @@ class TestBar < MiniTest::Test
         assert_equal(2, @bar.line.size())
     end
 
-    # def test_guest_added_to_front_of_line_if_no_space_in_room()
-    #     @room1.check_in_guest(@guest1)
-    #     @room1.check_in_guest(@guest2)
-    #     @room1.check_in_guest(@guest3)
-    #     @room1.check_in_guest(@guest1)
-    #     @room1.check_in_guest(@guest2)
-    #     @room1.check_in_guest(@guest3)
-    #     first_person_in_line = @bar.line[0]
-    #     assert_equal(@guest3, first_person_in_line)
-    # end
+    def test_find_room_for_guest__room_available()
+        assert_equal([@room2], @bar.find_room_for_guest(@guest1, 7))
+    end
 
-    # def test_find_empty_room()
-    #     @room2.check_in_guest(@guest1)
-    #     assert_equal([@room1], @bar.find_empty_room())
-    # end
-
-    # def test_add_customer_to_line_if_no_empty_room()
-    # end
-
-    # def test_add_customer_to_front_of_line_if_no_space_in_room()
-    # end
+    def test_guest_added_to_line_if_no_room_available()
+        @bar.find_room_for_guest(@guest3, 16)
+        assert_equal(1, @bar.line.size())
+    end
 
     def test_charge_one_customer__enough_money()
         @room2.increase_bar_tab(140)
