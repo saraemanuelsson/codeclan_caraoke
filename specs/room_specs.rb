@@ -115,32 +115,16 @@ class TestRoom < MiniTest::Test
         assert_equal(90, @room.charge_per_booking())
     end
 
-    # def test_find_song_by_name()
-    #     result = @room.find_song_by_name("Thrift shop")
-    #     assert_equal(@song3, result)
-    # end
+    def test_find_songs_by_artist()
+        new_song = Song.new("Stonehenge", "Ylvis")
+        @songs.push(new_song)
+        result = @room.find_songs_by_artist("Ylvis")
+        assert_equal(2, result.size())
+    end
 
-    # def test_find_songs_by_artist()
-    # end
-
-    # def test_find_song_name__song_found()
-    #     result = @room.find_song_name(@song1.name)
-    #     assert_equal("Don't stop believin'", result)
-    # end
-
-    # def test_find_song_name__not_found()
-    # end
-
-    # def test_find_songs_by_artist__found()
-    # end
-
-    # def test_find_songs_by_artist__not_found()
-    # end
-
-    # def test_sell_drink()
-    # end
-
-    # def test_increase_bar_tab()
-    # end
+    def test_find_songs_by_artist__not_found()
+        result = @room.find_songs_by_artist("Flo Rida")
+        assert_nil(nil, result)
+    end
 
 end
