@@ -23,6 +23,8 @@ class TestBar < MiniTest::Test
         @guest2 = Guest.new("Anna", 573, "I wanna dance with somebody")
         @guest3 = Guest.new("Linda", 47, "Whistle")
 
+        @guests = [@guest1, @guest2, @guest3, @guest1, @guest2, @guest3]
+
     end
 
     def test_name()
@@ -44,15 +46,26 @@ class TestBar < MiniTest::Test
         assert_equal(2, @bar.line.size())
     end
 
-    def test_find_room_for_guest__room_available()
-        @bar.find_room_for_guest(@guest1, 7)
-        assert_equal(1, @room2.number_of_guests_in_room())
+    def test_find_room_for_guests__room_available()
+        @bar.find_room_for_guests(@guests)
+        assert_equal(6, @room2.number_of_guests_in_room())
     end
 
-    def test_guest_added_to_line_if_no_room_available()
-        @bar.find_room_for_guest(@guest3, 16)
-        assert_equal(1, @bar.line.size())
+    def test_guests_added_to_line_if_no_room_available()
+        group_of_guests = [@guest1, @guest1, @guest1, @guest1, @guest1, @guest1, @guest1, @guest1, @guest1, @guest1, @guest1, @guest1, @guest1, @guest1, @guest1, @guest1,]
+        @bar.find_room_for_guests(group_of_guests)
+        assert_equal(16, @bar.line.size())
     end
+
+    # def test_find_room_for_guest__room_available()
+    #     @bar.find_room_for_guest(@guest1, 7)
+    #     assert_equal(1, @room2.number_of_guests_in_room())
+    # end
+
+    # def test_guest_added_to_line_if_no_room_available()
+    #     @bar.find_room_for_guest(@guest3, 16)
+    #     assert_equal(1, @bar.line.size())
+    # end
 
     def test_charge_one_customer__enough_money()
         @room2.increase_bar_tab(140)

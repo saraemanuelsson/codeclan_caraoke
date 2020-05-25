@@ -21,15 +21,30 @@ class Bar
         @line.push(guest)
     end
 
-    def find_room_for_guest(guest, group_size)
+    # def find_room_for_guest(guest, group_size)
+    #     available_rooms = @rooms.find_all { |room| room.number_of_guests_in_room() == 0 }
+
+    #     suitable_rooms_for_group = available_rooms.find_all { |room| room.capacity() > group_size }
+
+    #     if suitable_rooms_for_group.size != 0
+    #         suitable_rooms_for_group[0].check_in_guest(guest)
+    #     else
+    #         add_guest_to_line(guest)
+    #     end
+    # end
+
+    def find_room_for_guests(guests)
         available_rooms = @rooms.find_all { |room| room.number_of_guests_in_room() == 0 }
-
-        suitable_rooms_for_group = available_rooms.find_all { |room| room.capacity() > group_size }
-
+        suitable_rooms_for_group = available_rooms.find_all { |room| room.capacity() > guests.size }
+        
         if suitable_rooms_for_group.size != 0
-            suitable_rooms_for_group[0].check_in_guest(guest)
+            for guest in guests
+                suitable_rooms_for_group[0].check_in_guest(guest)
+            end
         else
-            add_guest_to_line(guest)
+            for guest in guests
+                add_guest_to_line(guest)
+            end
         end
     end
 
